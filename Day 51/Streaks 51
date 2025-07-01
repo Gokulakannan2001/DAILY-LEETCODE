@@ -1,0 +1,11 @@
+class Solution:
+    def buildArray(self, target: List[int], n: int) -> List[str]:
+        ans = []
+        curr = 1
+        for i in target:
+            while curr < i:
+                ans.extend(["Push","Pop"])
+                curr += 1
+            ans.append("Push")
+            curr += 1 
+        return ans
