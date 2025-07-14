@@ -1,0 +1,22 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        subsets = []
+        nums.sort()
+        self.recursive(nums, subsets)
+        return subsets
+
+    def recursive(self, nums, subsets) -> int: # return the number of elements added to the subsets
+        if len(nums)==0:
+            subsets.append([])
+            return 1
+        
+        nb_new_subsets = self.recursive(nums[1:], subsets)
+        if 1 < len(nums) and nums[0] == nums[1]:
+            # if nums[0] is equal to nums[1], add nums[0] only to the new subsets created using nums[1]
+            for k in range(len(subsets)-1,  len(subsets)-1-nb_new_subsets, -1):
+                subsets.append(subsets[k]+[nums[0]])
+            return nb_new_subsets
+        else:
+            for k in range(len(subsets)):
+                subsets.append(subsets[k]+[nums[0]])
+            return len(subsets)//2
