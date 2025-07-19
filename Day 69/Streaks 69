@@ -1,0 +1,6 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        musk = 0
+        for i in nums:
+          musk = musk^i
+        return musk
